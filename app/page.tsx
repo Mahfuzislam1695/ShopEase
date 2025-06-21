@@ -13,12 +13,12 @@ export default function HomePage() {
 
   // Sample categories
   const categories = [
-    { id: 1, name: "Clothing", image: "clothing" },
-    { id: 2, name: "Electronics", image: "electronics" },
-    { id: 3, name: "Home & Kitchen", image: "home" },
-    { id: 4, name: "Beauty", image: "beauty" },
-    { id: 5, name: "Sports", image: "sports" },
-    { id: 6, name: "Books", image: "books" },
+    { id: 1, name: "Clothing", image: "/images/home/category/clothing.png" },
+    { id: 2, name: "Electronics", image: "/images/home/category/electronics.png" },
+    { id: 3, name: "Home & Kitchen", image: "/images/home/category/homeKitchen.png" },
+    { id: 4, name: "Beauty", image: "/images/home/category/beauty.png" },
+    { id: 5, name: "Sports", image: "/images/home/category/sports.png" },
+    { id: 6, name: "Books", image: "/images/home/category/books.png" },
   ]
 
   // Sample featured products
@@ -102,15 +102,15 @@ export default function HomePage() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {categories.map((category) => (
             <Link key={category.id} href={`/products?category=${category.name.toLowerCase()}`} className="group">
-              <div className="relative overflow-hidden rounded-lg aspect-square">
+              <div className="relative overflow-hidden rounded-lg aspect-square bg-white">
                 <Image
-                  src={`/abstract-geometric-shapes.png?height=300&width=300&query=${category.image} category`}
+                  src={`${category.image}`}
                   alt={category.name}
                   fill
                   className="object-cover transition-transform group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                  <h3 className="text-white font-medium text-lg">{category.name}</h3>
+                  <h3 className="text-primary font-medium text-lg">{category.name}</h3>
                 </div>
               </div>
             </Link>

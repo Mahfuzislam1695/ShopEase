@@ -108,9 +108,8 @@ export function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-200 ${
-        isScrolled ? "bg-white shadow-md" : "bg-white/80 backdrop-blur-md"
-      }`}
+      className={`sticky top-0 z-50 w-full transition-all duration-200 ${isScrolled ? "bg-white shadow-md" : "bg-white/80 backdrop-blur-md"
+        }`}
     >
       {/* Top bar - only on desktop */}
       <div className="hidden sm:block bg-gray-900 text-white py-2">
@@ -161,9 +160,8 @@ export function Navbar() {
                   <nav className="space-y-1">
                     <Link
                       href="/"
-                      className={`block px-4 py-2 rounded-md ${
-                        pathname === "/" ? "bg-rose-50 text-rose-600" : "hover:bg-gray-100"
-                      }`}
+                      className={`block px-4 py-2 rounded-md ${pathname === "/" ? "bg-rose-50 text-rose-600" : "hover:bg-gray-100"
+                        }`}
                     >
                       Home
                     </Link>
@@ -173,9 +171,8 @@ export function Navbar() {
                         <Link
                           key={category.name}
                           href={category.href}
-                          className={`block px-6 py-2 rounded-md ${
-                            pathname.includes(category.href) ? "bg-rose-50 text-rose-600" : "hover:bg-gray-100"
-                          }`}
+                          className={`block px-6 py-2 rounded-md ${pathname.includes(category.href) ? "bg-rose-50 text-rose-600" : "hover:bg-gray-100"
+                            }`}
                         >
                           {category.name}
                         </Link>
@@ -183,27 +180,24 @@ export function Navbar() {
                     </div>
                     <Link
                       href="/cart"
-                      className={`flex items-center justify-between px-4 py-2 rounded-md ${
-                        pathname === "/cart" ? "bg-rose-50 text-rose-600" : "hover:bg-gray-100"
-                      }`}
+                      className={`flex items-center justify-between px-4 py-2 rounded-md ${pathname === "/cart" ? "bg-rose-50 text-rose-600" : "hover:bg-gray-100"
+                        }`}
                     >
                       <span>Cart</span>
                       {cartItemsCount > 0 && <Badge className="bg-rose-600">{cartItemsCount}</Badge>}
                     </Link>
                     <Link
                       href="/wishlist"
-                      className={`flex items-center justify-between px-4 py-2 rounded-md ${
-                        pathname === "/wishlist" ? "bg-rose-50 text-rose-600" : "hover:bg-gray-100"
-                      }`}
+                      className={`flex items-center justify-between px-4 py-2 rounded-md ${pathname === "/wishlist" ? "bg-rose-50 text-rose-600" : "hover:bg-gray-100"
+                        }`}
                     >
                       <span>Wishlist</span>
                       {wishlistCount > 0 && <Badge className="bg-rose-600">{wishlistCount}</Badge>}
                     </Link>
                     <Link
                       href="/orders"
-                      className={`block px-4 py-2 rounded-md ${
-                        pathname.startsWith("/orders") ? "bg-rose-50 text-rose-600" : "hover:bg-gray-100"
-                      }`}
+                      className={`block px-4 py-2 rounded-md ${pathname.startsWith("/orders") ? "bg-rose-50 text-rose-600" : "hover:bg-gray-100"
+                        }`}
                     >
                       My Orders
                     </Link>
@@ -215,9 +209,8 @@ export function Navbar() {
                     <>
                       <Link
                         href="/profile"
-                        className={`block px-4 py-2 rounded-md ${
-                          pathname === "/profile" ? "bg-rose-50 text-rose-600" : "hover:bg-gray-100"
-                        }`}
+                        className={`block px-4 py-2 rounded-md ${pathname === "/profile" ? "bg-rose-50 text-rose-600" : "hover:bg-gray-100"
+                          }`}
                       >
                         My Account
                       </Link>
@@ -232,17 +225,15 @@ export function Navbar() {
                     <>
                       <Link
                         href="/login"
-                        className={`block px-4 py-2 rounded-md ${
-                          pathname === "/login" ? "bg-rose-50 text-rose-600" : "hover:bg-gray-100"
-                        }`}
+                        className={`block px-4 py-2 rounded-md ${pathname === "/login" ? "bg-rose-50 text-rose-600" : "hover:bg-gray-100"
+                          }`}
                       >
                         Sign In
                       </Link>
                       <Link
                         href="/register"
-                        className={`block px-4 py-2 rounded-md ${
-                          pathname === "/register" ? "bg-rose-50 text-rose-600" : "hover:bg-gray-100"
-                        }`}
+                        className={`block px-4 py-2 rounded-md ${pathname === "/register" ? "bg-rose-50 text-rose-600" : "hover:bg-gray-100"
+                          }`}
                       >
                         Create Account
                       </Link>
@@ -290,12 +281,6 @@ export function Navbar() {
               className={`text-sm font-medium ${isActive("/orders") ? "text-rose-600" : "text-gray-700 hover:text-rose-600"}`}
             >
               My Orders
-            </Link>
-            <Link
-              href="/deals"
-              className={`text-sm font-medium ${isActive("/deals") ? "text-rose-600" : "text-gray-700 hover:text-rose-600"}`}
-            >
-              Deals
             </Link>
           </nav>
 
