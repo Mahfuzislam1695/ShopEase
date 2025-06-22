@@ -24,18 +24,18 @@ export default function HomePage() {
 
   // Sample featured products
   const featuredProducts = [
-    { id: 1, name: "Wireless Headphones", price: 99.99, category: "Electronics", image: "headphones" },
-    { id: 2, name: "Cotton T-Shirt", price: 24.99, category: "Clothing", image: "tshirt" },
-    { id: 3, name: "Smart Watch", price: 149.99, category: "Electronics", image: "watch" },
-    { id: 4, name: "Running Shoes", price: 79.99, category: "Sports", image: "shoes" },
+    { id: 1, name: "Wireless Headphones", price: 99.99, category: "Electronics", image: "/images/homepage/featuredProducts/wirelessHeadphones.jpg" },
+    { id: 2, name: "Cotton T-Shirt", price: 24.99, category: "Clothing", image: "/images/homepage/featuredProducts/cottonTshirt.jpg" },
+    { id: 3, name: "Smart Watch", price: 149.99, category: "Electronics", image: "/images/homepage/featuredProducts/smartWatch.png" },
+    { id: 4, name: "Running Shoes", price: 79.99, category: "Sports", image: "/images/homepage/featuredProducts/runningShoes.png" },
   ]
 
   // Sample new arrivals
   const newArrivals = [
-    { id: 5, name: "Bluetooth Speaker", price: 59.99, category: "Electronics", image: "speaker" },
-    { id: 6, name: "Denim Jacket", price: 89.99, category: "Clothing", image: "jacket" },
-    { id: 7, name: "Coffee Maker", price: 129.99, category: "Home & Kitchen", image: "coffee" },
-    { id: 8, name: "Yoga Mat", price: 39.99, category: "Sports", image: "yoga" },
+    { id: 5, name: "Bluetooth Speaker", price: 59.99, category: "Electronics", image: "/images/homepage/newArrivals/bluetoothSpeaker.png" },
+    { id: 6, name: "Denim Jacket", price: 89.99, category: "Clothing", image: "/images/homepage/newArrivals/denimJacket.png" },
+    { id: 7, name: "Coffee Maker", price: 129.99, category: "Home & Kitchen", image: "/images/homepage/newArrivals/coffeeMaker.png" },
+    { id: 8, name: "Yoga Mat", price: 39.99, category: "Sports", image: "/images/homepage/newArrivals/yogaMat.png" },
   ]
 
   const categories = [

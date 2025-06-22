@@ -117,10 +117,12 @@ export function ProductCard({
         )}
         <Link href={`/products/${id}`}>
           <Image
-            src={`/abstract-geometric-shapes.png?height=400&width=400&query=${image} product`}
+            src={image}
+            // width={400}
+            // height={400}
             alt={name}
             fill
-            className="object-cover transition-transform group-hover:scale-105"
+            className="object-cover transition-transform group-hover:scale-105 "
           />
         </Link>
         <div className="absolute top-2 right-2 z-10">
@@ -130,11 +132,10 @@ export function ProductCard({
                 <Button
                   variant="outline"
                   size="icon"
-                  className={`h-8 w-8 rounded-full ${
-                    isInWishlist
-                      ? "bg-rose-100 text-rose-600 border-rose-200 hover:bg-rose-200"
-                      : "bg-white hover:bg-gray-100"
-                  }`}
+                  className={`h-8 w-8 rounded-full ${isInWishlist
+                    ? "bg-rose-100 text-rose-600 border-rose-200 hover:bg-rose-200"
+                    : "bg-white hover:bg-gray-100"
+                    }`}
                   onClick={handleAddToWishlist}
                   disabled={isAddingToWishlist}
                 >
@@ -161,13 +162,12 @@ export function ProductCard({
               {[...Array(5)].map((_, i) => (
                 <svg
                   key={i}
-                  className={`w-4 h-4 ${
-                    i < Math.floor(rating)
+                  className={`w-4 h-4 ${i < Math.floor(rating)
+                    ? "text-yellow-400 fill-current"
+                    : i < rating
                       ? "text-yellow-400 fill-current"
-                      : i < rating
-                        ? "text-yellow-400 fill-current"
-                        : "text-gray-300"
-                  }`}
+                      : "text-gray-300"
+                    }`}
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                 >

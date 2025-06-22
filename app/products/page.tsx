@@ -13,21 +13,22 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { PageHeader } from "@/app/components/page-header"
 import { ProductCard } from "@/app/components/product-card"
 import { useToast } from "@/components/ui/toast"
+import { useSearchParams } from "next/navigation"
 
 // Sample product data
 const PRODUCTS = [
-  { id: 1, name: "Wireless Headphones", price: 99.99, category: "Electronics", rating: 4.5, image: "headphones" },
-  { id: 2, name: "Cotton T-Shirt", price: 24.99, category: "Clothing", rating: 4.2, image: "tshirt" },
-  { id: 3, name: "Smart Watch", price: 149.99, category: "Electronics", rating: 4.8, image: "watch" },
-  { id: 4, name: "Running Shoes", price: 79.99, category: "Sports", rating: 4.3, image: "shoes" },
-  { id: 5, name: "Bluetooth Speaker", price: 59.99, category: "Electronics", rating: 4.1, image: "speaker" },
-  { id: 6, name: "Denim Jacket", price: 89.99, category: "Clothing", rating: 4.4, image: "jacket" },
-  { id: 7, name: "Coffee Maker", price: 129.99, category: "Home & Kitchen", rating: 4.7, image: "coffee" },
-  { id: 8, name: "Yoga Mat", price: 39.99, category: "Sports", rating: 4.0, image: "yoga" },
-  { id: 9, name: "Desk Lamp", price: 49.99, category: "Home & Kitchen", rating: 4.2, image: "lamp" },
-  { id: 10, name: "Backpack", price: 69.99, category: "Accessories", rating: 4.5, image: "backpack" },
-  { id: 11, name: "Sunglasses", price: 29.99, category: "Accessories", rating: 4.1, image: "sunglasses" },
-  { id: 12, name: "Water Bottle", price: 19.99, category: "Sports", rating: 4.3, image: "bottle" },
+  { id: 1, name: "Wireless Headphones", price: 99.99, category: "Electronics", rating: 4.5, image: "/images/categories/allCategories/Wireless Headphones.jpg" },
+  { id: 2, name: "Cotton T-Shirt", price: 24.99, category: "Clothing", rating: 4.2, image: "/images/categories/allCategories/Cotton T-Shirt 1.jpg" },
+  { id: 3, name: "Smart Watch", price: 149.99, category: "Electronics", rating: 4.8, image: "/images/categories/allCategories/Smart Watch.png" },
+  { id: 4, name: "Running Shoes", price: 79.99, category: "Sports", rating: 4.3, image: "/images/categories/allCategories/Running Shoes .png" },
+  { id: 5, name: "Bluetooth Speaker", price: 59.99, category: "Electronics", rating: 4.1, image: "/images/categories/allCategories/bluetooth Speaker.png" },
+  { id: 6, name: "Denim Jacket", price: 89.99, category: "Clothing", rating: 4.4, image: "/images/categories/allCategories/Denim Jacket.png" },
+  { id: 7, name: "Coffee Maker", price: 129.99, category: "Home & Kitchen", rating: 4.7, image: "/images/categories/allCategories/Coffee Maker.png" },
+  { id: 8, name: "Yoga Mat", price: 39.99, category: "Sports", rating: 4.0, image: "/images/categories/allCategories/Yoga Mat.png" },
+  { id: 9, name: "Desk Lamp", price: 49.99, category: "Home & Kitchen", rating: 4.2, image: "/images/categories/allCategories/LED Desk Lamp.jpg" },
+  { id: 10, name: "Backpack", price: 69.99, category: "Accessories", rating: 4.5, image: "/images/categories/allCategories/backpack.jpg" },
+  { id: 11, name: "Sunglasses", price: 29.99, category: "Accessories", rating: 4.1, image: "/images/categories/allCategories/Sunglasses.jpg" },
+  { id: 12, name: "Water Bottle", price: 19.99, category: "Sports", rating: 4.3, image: "/images/categories/allCategories/Water Bottle.jpg" },
 ]
 
 // Sample categories
@@ -40,6 +41,7 @@ const CATEGORIES = [
 ]
 
 export default function ProductsPage() {
+  const searchParams = useSearchParams()
   const { addToast } = useToast()
   const [products, setProducts] = useState(PRODUCTS)
   const [priceRange, setPriceRange] = useState([0, 200])
@@ -48,6 +50,16 @@ export default function ProductsPage() {
   const [showFilters, setShowFilters] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
   const productsPerPage = 8
+
+
+  useEffect(() => {
+    const categoryParam = searchParams.get('category')
+    if (categoryParam) {
+      // Convert the URL parameter to match your category IDs
+      // For example, if URL is "clothing", and your category ID is "clothing"
+      setSelectedCategories([categoryParam.toLowerCase()])
+    }
+  }, [searchParams]) // Run when searchParams change
 
   // Handle add to cart
   const handleAddToCart = (id: number, name: string) => {

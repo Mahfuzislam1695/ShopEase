@@ -74,10 +74,10 @@ const reviews = [
 
 // Sample related products
 const relatedProducts = [
-  { id: 5, name: "Bluetooth Speaker", price: 59.99, category: "Electronics", rating: 4.1, image: "speaker" },
-  { id: 6, name: "Wireless Earbuds", price: 89.99, category: "Electronics", rating: 4.4, image: "earbuds" },
-  { id: 7, name: "Smart Watch", price: 129.99, category: "Electronics", rating: 4.7, image: "watch" },
-  { id: 8, name: "Portable Charger", price: 39.99, category: "Electronics", rating: 4.0, image: "charger" },
+  { id: 5, name: "Bluetooth Speaker", price: 59.99, category: "Electronics", rating: 4.1, image: "/images/homepage/newArrivals/bluetoothSpeaker.png" },
+  { id: 6, name: "Wireless Earbuds", price: 89.99, category: "Electronics", rating: 4.4, image: "/images/categories/electronics/Wireless Headphones.jpg" },
+  { id: 7, name: "Smart Watch", price: 129.99, category: "Electronics", rating: 4.7, image: "/images/categories/electronics/Smart Watch.png" },
+  { id: 8, name: "Portable Charger", price: 39.99, category: "Electronics", rating: 4.0, image: "/images/categories/electronics/Portable Power Bank.jpg" },
 ]
 
 export default function ProductDetailPage() {
@@ -129,6 +129,7 @@ export default function ProductDetailPage() {
         <div className="space-y-4">
           <div className="relative aspect-square overflow-hidden rounded-lg border">
             <Image
+              // src={product.images[selectedImage]}
               src={`/abstract-geometric-shapes.png?height=600&width=600&query=${product.images[selectedImage]} product detail`}
               alt={product.name}
               fill
@@ -144,9 +145,8 @@ export default function ProductDetailPage() {
             {product.images.map((image, index) => (
               <button
                 key={index}
-                className={`relative aspect-square overflow-hidden rounded-md border ${
-                  selectedImage === index ? "border-rose-600" : "border-gray-200"
-                }`}
+                className={`relative aspect-square overflow-hidden rounded-md border ${selectedImage === index ? "border-rose-600" : "border-gray-200"
+                  }`}
                 onClick={() => setSelectedImage(index)}
               >
                 <Image
@@ -199,9 +199,8 @@ export default function ProductDetailPage() {
                     <RadioGroupItem value={color} id={`color-${color}`} className="sr-only" />
                     <Label
                       htmlFor={`color-${color}`}
-                      className={`h-10 w-10 rounded-full border-2 cursor-pointer flex items-center justify-center ${
-                        selectedColor === color ? "border-rose-600" : "border-transparent hover:border-gray-300"
-                      }`}
+                      className={`h-10 w-10 rounded-full border-2 cursor-pointer flex items-center justify-center ${selectedColor === color ? "border-rose-600" : "border-transparent hover:border-gray-300"
+                        }`}
                     >
                       <span
                         className="h-8 w-8 rounded-full"

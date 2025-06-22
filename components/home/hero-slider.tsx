@@ -124,9 +124,9 @@ export function HeroSlider() {
                 <div
                     className={`${currentSlideData.textAlign} text-white max-w-xl transition-all duration-1000 ease-out transform ${isAnimating ? "opacity-0 translate-y-8" : "opacity-100 translate-y-0"
                         } ${currentSlideData.textPosition === "left"
-                            ? "ml-0"
+                            ? "ml-0 lg:ml-20"
                             : currentSlideData.textPosition === "right"
-                                ? "mr-0"
+                                ? "mr-0 lg:mr-20"
                                 : "mx-auto"
                         }`}
                 >
