@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, Suspense } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { ChevronDown, ChevronUp, Filter, SlidersHorizontal } from "lucide-react"
 
@@ -13,7 +13,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { PageHeader } from "@/app/components/page-header"
 import { ProductCard } from "@/app/components/product-card"
 import { useToast } from "@/components/ui/toast"
-import { useSearchParams } from "next/navigation"
+// import { useSearchParams } from "next/navigation"
 
 // Sample product data
 const PRODUCTS = [
@@ -41,7 +41,7 @@ const CATEGORIES = [
 ]
 
 export default function ProductsPage() {
-  const searchParams = useSearchParams()
+  // const searchParams = useSearchParams()
   const { addToast } = useToast()
   const [products, setProducts] = useState(PRODUCTS)
   const [priceRange, setPriceRange] = useState([0, 200])
@@ -52,14 +52,14 @@ export default function ProductsPage() {
   const productsPerPage = 8
 
 
-  useEffect(() => {
-    const categoryParam = searchParams.get('category')
-    if (categoryParam) {
-      // Convert the URL parameter to match your category IDs
-      // For example, if URL is "clothing", and your category ID is "clothing"
-      setSelectedCategories([categoryParam.toLowerCase()])
-    }
-  }, [searchParams]) // Run when searchParams change
+  // useEffect(() => {
+  //   const categoryParam = searchParams.get('category')
+  //   if (categoryParam) {
+  //     // Convert the URL parameter to match your category IDs
+  //     // For example, if URL is "clothing", and your category ID is "clothing"
+  //     setSelectedCategories([categoryParam.toLowerCase()])
+  //   }
+  // }, [searchParams]) // Run when searchParams change
 
   // Handle add to cart
   const handleAddToCart = (id: number, name: string) => {
@@ -205,137 +205,137 @@ export default function ProductsPage() {
   )
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <div className="container mx-auto py-8 px-4">
-        <PageHeader title="All Products" description="Browse our collection of high-quality products" />
-        <div className="flex items-center justify-between mb-6">
-          <div></div>
-          <div className="flex items-center space-x-2">
-            <Select value={sortOption} onValueChange={setSortOption}>
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Sort by" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="popularity">Popularity</SelectItem>
-                <SelectItem value="price-low-high">Price: Low to High</SelectItem>
-                <SelectItem value="price-high-low">Price: High to Low</SelectItem>
-                <SelectItem value="rating">Rating</SelectItem>
-              </SelectContent>
-            </Select>
 
-            {/* Mobile filter button */}
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button variant="outline" size="icon" className="lg:hidden">
-                  <Filter size={18} />
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="left" className="w-[300px] sm:w-[350px]">
-                <FiltersComponent />
-              </SheetContent>
-            </Sheet>
-          </div>
+    <div className="container mx-auto py-8 px-4">
+      <PageHeader title="All Products" description="Browse our collection of high-quality products" />
+      <div className="flex items-center justify-between mb-6">
+        <div></div>
+        <div className="flex items-center space-x-2">
+          <Select value={sortOption} onValueChange={setSortOption}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Sort by" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="popularity">Popularity</SelectItem>
+              <SelectItem value="price-low-high">Price: Low to High</SelectItem>
+              <SelectItem value="price-high-low">Price: High to Low</SelectItem>
+              <SelectItem value="rating">Rating</SelectItem>
+            </SelectContent>
+          </Select>
+
+          {/* Mobile filter button */}
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="outline" size="icon" className="lg:hidden">
+                <Filter size={18} />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-[300px] sm:w-[350px]">
+              <FiltersComponent />
+            </SheetContent>
+          </Sheet>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        {/* Desktop Filters */}
+        <div className="hidden lg:block">
+          <FiltersComponent />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          {/* Desktop Filters */}
-          <div className="hidden lg:block">
-            <FiltersComponent />
-          </div>
+        {/* Products Grid */}
+        <div className="lg:col-span-3">
+          {/* Mobile Filters Toggle */}
+          <div className="lg:hidden mb-4">
+            <Button
+              variant="outline"
+              onClick={() => setShowFilters(!showFilters)}
+              className="w-full flex items-center justify-between"
+            >
+              <span className="flex items-center">
+                <SlidersHorizontal size={18} className="mr-2" />
+                Filters
+              </span>
+              {showFilters ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+            </Button>
 
-          {/* Products Grid */}
-          <div className="lg:col-span-3">
-            {/* Mobile Filters Toggle */}
-            <div className="lg:hidden mb-4">
-              <Button
-                variant="outline"
-                onClick={() => setShowFilters(!showFilters)}
-                className="w-full flex items-center justify-between"
-              >
-                <span className="flex items-center">
-                  <SlidersHorizontal size={18} className="mr-2" />
-                  Filters
-                </span>
-                {showFilters ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
-              </Button>
-
-              {showFilters && (
-                <div className="mt-4 p-4 border rounded-lg">
-                  <FiltersComponent />
-                </div>
-              )}
-            </div>
-
-            {/* Results count */}
-            <div className="mb-4 text-sm text-gray-500">
-              Showing {currentProducts.length} of {products.length} products
-            </div>
-
-            {/* Products */}
-            {products.length === 0 ? (
-              <div className="text-center py-12">
-                <h3 className="text-lg font-medium mb-2">No products found</h3>
-                <p className="text-gray-500 mb-4">Try adjusting your filters to find what you're looking for.</p>
-                <Button onClick={clearFilters}>Clear Filters</Button>
+            {showFilters && (
+              <div className="mt-4 p-4 border rounded-lg">
+                <FiltersComponent />
               </div>
-            ) : (
-              <>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                  {currentProducts.map((product) => (
-                    <ProductCard
-                      key={product.id}
-                      id={product.id}
-                      name={product.name}
-                      price={product.price}
-                      category={product.category}
-                      image={product.image}
-                      rating={product.rating}
-                      onAddToCart={handleAddToCart}
-                      onAddToWishlist={handleAddToWishlist}
-                    />
-                  ))}
-                </div>
-
-                {/* Pagination */}
-                {totalPages > 1 && (
-                  <div className="flex justify-center mt-8">
-                    <div className="flex items-center space-x-2">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-                        disabled={currentPage === 1}
-                      >
-                        Previous
-                      </Button>
-
-                      {[...Array(totalPages)].map((_, i) => (
-                        <Button
-                          key={i}
-                          variant={currentPage === i + 1 ? "default" : "outline"}
-                          size="sm"
-                          onClick={() => setCurrentPage(i + 1)}
-                          className={currentPage === i + 1 ? "bg-rose-600 hover:bg-rose-700" : ""}
-                        >
-                          {i + 1}
-                        </Button>
-                      ))}
-
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-                        disabled={currentPage === totalPages}
-                      >
-                        Next
-                      </Button>
-                    </div>
-                  </div>
-                )}
-              </>
             )}
           </div>
+
+          {/* Results count */}
+          <div className="mb-4 text-sm text-gray-500">
+            Showing {currentProducts.length} of {products.length} products
+          </div>
+
+          {/* Products */}
+          {products.length === 0 ? (
+            <div className="text-center py-12">
+              <h3 className="text-lg font-medium mb-2">No products found</h3>
+              <p className="text-gray-500 mb-4">Try adjusting your filters to find what you're looking for.</p>
+              <Button onClick={clearFilters}>Clear Filters</Button>
+            </div>
+          ) : (
+            <>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {currentProducts.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    id={product.id}
+                    name={product.name}
+                    price={product.price}
+                    category={product.category}
+                    image={product.image}
+                    rating={product.rating}
+                    onAddToCart={handleAddToCart}
+                    onAddToWishlist={handleAddToWishlist}
+                  />
+                ))}
+              </div>
+
+              {/* Pagination */}
+              {totalPages > 1 && (
+                <div className="flex justify-center mt-8">
+                  <div className="flex items-center space-x-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                      disabled={currentPage === 1}
+                    >
+                      Previous
+                    </Button>
+
+                    {[...Array(totalPages)].map((_, i) => (
+                      <Button
+                        key={i}
+                        variant={currentPage === i + 1 ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => setCurrentPage(i + 1)}
+                        className={currentPage === i + 1 ? "bg-rose-600 hover:bg-rose-700" : ""}
+                      >
+                        {i + 1}
+                      </Button>
+                    ))}
+
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                      disabled={currentPage === totalPages}
+                    >
+                      Next
+                    </Button>
+                  </div>
+                </div>
+              )}
+            </>
+          )}
         </div>
-      </div></Suspense>
+      </div>
+    </div>
   )
 }
