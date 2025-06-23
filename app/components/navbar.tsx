@@ -144,8 +144,8 @@ export function Navbar() {
               <div className="flex flex-col h-full">
                 <div className="flex items-center justify-between py-4 border-b">
                   <Link href="/" className="flex items-center space-x-2">
-                    <Image src="/abstract-logo.png" alt="Logo" width={32} height={32} />
-                    <span className="font-bold text-lg">ShopEase</span>
+                    <Image src="/images/Logo.png" alt="Logo" width={175} height={48} />
+                    {/* <span className="font-bold text-lg">ShopEase</span> */}
                   </Link>
                   <SheetClose className="rounded-full p-2 hover:bg-gray-100">
                     <X size={18} />
@@ -246,8 +246,8 @@ export function Navbar() {
 
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <Image src="/abstract-logo.png" alt="Logo" width={36} height={36} />
-            <span className="font-bold text-xl hidden sm:inline-block">ShopEase</span>
+            <Image src="/images/Logo.png" alt="Logo" width={100} height={100} />
+            {/* <span className="font-bold text-xl hidden sm:inline-block">ShopEase</span> */}
           </Link>
 
           {/* Desktop navigation */}

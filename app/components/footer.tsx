@@ -33,8 +33,9 @@ export function Footer() {
           {/* Company Info */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center space-x-2 mb-6">
-              <Image src="/abstract-logo.png" alt="Logo" width={40} height={40} />
-              <span className="text-xl font-bold text-white">ShopEase</span>
+              <Image src="/images/Logo footer.png" alt="Logo" width={175} height={48} />
+              {/* <Image src="/abstract-logo.png" alt="Logo" width={40} height={40} />
+              <span className="text-xl font-bold text-white">ShopEase</span> */}
             </Link>
             <p className="mb-4 text-gray-400">
               ShopEase is your one-stop destination for all your shopping needs. We offer a wide range of products with
